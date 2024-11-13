@@ -3,7 +3,7 @@ import { uploadPhoto, createUser } from './utils';
 export default function handleProfileSignup() {
   const promise1 = uploadPhoto();
   const promise2 = createUser();
-  Promise.allSettled([promise1, promise2])
+  return Promise.allSettled([promise1, promise2])
     .then((results) => {
       let message = '';
       let isError = false;
@@ -20,5 +20,6 @@ export default function handleProfileSignup() {
       });
       if (message) console.log(message);
       if (isError) console.log(errormessage);
+      return results;
     });
 }
